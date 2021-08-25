@@ -3,6 +3,14 @@
 	$db = new mysqli('localhost','root','','blog');
 	
 	if (isset($_POST['title'])) {
+		if (!isset($_POST['title']) || $_POST['title'] = "") {
+			echo "Title is required and cannot be empty";
+		}
+		
+		if (!isset($_POST['content']) || $_POST['content'] = "") {
+			echo "Content is required and cannot be empty";
+		}
+
 		$title = $_POST['title'];
 		$content = $_POST['content'];
 
@@ -36,12 +44,12 @@
 			<form method="post">
 				<div class="form-group">
 					<label>Title</label>
-					<input type="text" class="form-control" name="title">
+					<input required type="text" class="form-control" name="title">
 				</div>
 
 				<div class="form-group">
 					<label>Content</label>
-					<textarea rows="7" class="form-control" name="content"></textarea>
+					<textarea required rows="7" class="form-control" name="content"></textarea>
 				</div>
 
 				<div class="form-group">
