@@ -1,3 +1,23 @@
+<?php 
+
+	$db = new mysqli('localhost','root','','blog');
+	
+	if (isset($_POST['title'])) {
+		$title = $_POST['title'];
+		$content = $_POST['content'];
+
+		$insert_post_query = $db->query("INSERT INTO posts (title, content) VALUES ('$title', '$content')");
+		if ($insert_post_query) {
+			echo "Added";
+		}
+		else{
+			echo $db->error;
+		}
+	}
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +33,7 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<h4>Add Post</h4>
-			<form>
+			<form method="post">
 				<div class="form-group">
 					<label>Title</label>
 					<input type="text" class="form-control" name="title">
@@ -25,7 +45,7 @@
 				</div>
 
 				<div class="form-group">
-					<button class="mt-3 btn btn-dark">Submit</button>
+					<button name="submit" class="mt-3 btn btn-dark">Submit</button>
 				</div>
 			</form>
 		</div>
