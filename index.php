@@ -1,29 +1,7 @@
 <?php 
 
-	$db = new mysqli('localhost','root','','blog');
-	
-	if (isset($_POST['title'])) {
-		if (!isset($_POST['title']) || $_POST['title'] = "") {
-			echo "Title is required and cannot be empty";
-		}
-		
-		if (!isset($_POST['content']) || $_POST['content'] = "") {
-			echo "Content is required and cannot be empty";
-		}
-
-		$title = $_POST['title'];
-		$content = $_POST['content'];
-
-		$insert_post_query = $db->query("INSERT INTO posts (title, content) VALUES ('$title', '$content')");
-		if ($insert_post_query) {
-			echo "Added";
-		}
-		else{
-			echo $db->error;
-		}
-	}
-
-
+	require_once 'actions/conn.php';
+	require_once 'actions/insert_post.php';
 
 ?>
 <!DOCTYPE html>
@@ -44,7 +22,7 @@
 			<form method="post">
 				<div class="form-group">
 					<label>Title</label>
-					<input required type="text" class="form-control" name="title">
+					<input type="text" class="form-control" name="title">
 				</div>
 
 				<div class="form-group">
